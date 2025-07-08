@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./Register.module.css"
+import {useAuthentication} from "../../hook/useAuthentication.jsx"
 /**
  * Value fica como controle do input 
  * OnChange preenche o valor do input automaticamente
@@ -11,8 +12,9 @@ export const Register = () => {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("")
+    const { createUser, erroSystem, loading} = useAuthentication()
 
-    function onSubmit(e){
+    async function onSubmit(e){
         e.preventDefault()
 
         const user = {
@@ -28,7 +30,14 @@ export const Register = () => {
         }
 
         console.log(user)
+        await createUser(user)
     }
+
+    useEffect(() => {
+        if(erroSystem){
+            setError(erroSystem)
+        }
+    }, [erroSystem])
     return (
         <div className={styles.register}>
             <h1>Cadastre-se para postar</h1>
@@ -50,8 +59,10 @@ export const Register = () => {
                     <span>Senha</span>
                     <input type="password" name="confirmPassword" required placeholder="Confirme a sua senha" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </label>
-                <button>Cadastar</button>
+                
                 {error && <p className={styles.error}>{error}</p>}
+                {loading && <button className="btn" disabled>Carregando...</button>}
+                {!loading && <button className="btn">Cadastrar</button>}
             </form>
         </div>
     )
