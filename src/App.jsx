@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 // Components
 import { Footer } from "./components/Footer.jsx"
 import { NavBar } from "./components/NavBar.jsx"
@@ -25,6 +25,7 @@ function App() {
 
  useEffect(() => {
   onAuthStateChanged(auth, (user) => {
+     console.log("🔥 Auth state changed:", user);
     setUser(user)
   })
 }, [auth])
@@ -41,11 +42,11 @@ function App() {
           <div className="container">
               <Routes>
                   <Route path="/" element={<Home />}/>
-                  <Route path="/about" element={<About />}/>
-                  <Route path="/login" element={<Login />}/>
-                  <Route path="/register" element={<Register />}/>
-                <Route path="/create-post" element={<CreatePost/>}/>
-                  <Route path={"/dashboard"} element={<Dashboard />} />
+                  <Route path="/login" element={user ? <Navigate to="/login" /> : <Login />}/>
+                  <Route path="/register" element={user ? <Navigate to="/login" /> : <Register />}/>
+                  <Route path="/about" element={user ? <Navigate to="/login" /> : <About />}/>
+                  <Route path="/create-post" element={!user ? <Navigate to="/login" /> :<CreatePost/>}/>
+                  <Route path={"/dashboard"} element={!user ? <Navigate to="/login" /> : <Dashboard />} />
               </Routes>
           </div>
           <Footer />
