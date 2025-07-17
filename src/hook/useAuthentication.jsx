@@ -1,6 +1,7 @@
 import {
   updateProfile,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 
 import { auth } from "../firebase/config";
@@ -14,6 +15,12 @@ export const useAuthentication = () => {
   function checkIfCancelled() {
     if (cancelled) return true;
     return false;
+  }
+
+  const logout = () => {
+    checkIfCancelled();
+    console.log("logout");
+    signOut(auth);
   }
 
   const createUser = async (data) => {
@@ -32,6 +39,7 @@ export const useAuthentication = () => {
       await updateProfile(user, {
         displayName: data.displayName
       });
+
 
       return user;
     } catch (error) {
@@ -61,6 +69,7 @@ export const useAuthentication = () => {
     createUser,
     error,
     loading,
-    auth
+    auth,
+    logout
   };
 };
