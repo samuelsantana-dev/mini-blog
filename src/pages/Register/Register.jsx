@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import styles from "./Register.module.css"
 import {useAuthentication} from "../../hook/useAuthentication.jsx"
+import { useNavigate } from "react-router-dom"
 /**
  * Value fica como controle do input 
  * OnChange preenche o valor do input automaticamente
@@ -12,6 +13,7 @@ export const Register = () => {
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("")
+    const navigate = useNavigate();
     const { createUser, erroSystem, loading} = useAuthentication()
 
     async function onSubmit(e){
@@ -31,6 +33,8 @@ export const Register = () => {
 
         console.log(user)
         await createUser(user)
+
+        navigate("/dashboard")
     }
 
     useEffect(() => {
