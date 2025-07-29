@@ -1,7 +1,8 @@
 import {
   updateProfile,
   createUserWithEmailAndPassword,
-  signOut
+  signOut,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 
 import { auth } from "../firebase/config";
@@ -61,6 +62,25 @@ export const useAuthentication = () => {
     }
   };
 
+  const login = async (data) => {
+    checkIfCancelled();
+      setLoading(true);
+      setError("");
+    try {
+          setLoading(false);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      
+    } catch (erro) {
+      let systemErrorMessage;
+
+      if(erro.message.includes("INVALID_LOGIN_CREDENTIALS")){
+        systemErrorMessage = "Usuário não encontrado.";
+      } 
+      setLoading(false);
+      setError(systemErrorMessage);
+    }
+  }
+
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
@@ -70,6 +90,7 @@ export const useAuthentication = () => {
     error,
     loading,
     auth,
-    logout
+    logout,
+    login
   };
 };
