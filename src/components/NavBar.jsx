@@ -5,7 +5,6 @@ import { Dashboard } from './../pages/Dashboard/Dashboard';
 import { useAuthentication } from "../hook/useAuthentication";
 export const NavBar = () => {
     const {user} = useAuthValue();  
-    console.log('user', user)
     const {logout} = useAuthentication();
     return (
        <nav className={styles.navbar}>

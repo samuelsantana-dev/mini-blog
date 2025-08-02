@@ -20,7 +20,6 @@ export const useAuthentication = () => {
 
   const logout = () => {
     checkIfCancelled();
-    console.log("logout");
     signOut(auth);
   }
 

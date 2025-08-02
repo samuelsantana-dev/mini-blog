@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import styles from './CreatePost.module.css'
-import useInsertDocument from "../../hook/useInsertDocument"
+import {useInsertDocument} from "../../hook/useInsertDocument"
 import {useAuthValue} from "../../context/AuthContext"
 export const CreatePost = () => {
 
