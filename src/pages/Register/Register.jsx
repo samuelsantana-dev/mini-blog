@@ -31,7 +31,6 @@ export const Register = () => {
             return;
         }
 
-        console.log(user)
         await createUser(user)
 
         navigate("/dashboard")

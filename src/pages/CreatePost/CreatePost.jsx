@@ -14,6 +14,7 @@ export const CreatePost = () => {
   const {insertDocument, response} = useInsertDocument("posts")
 
     const handleSubmit = (e) => {
+        console.log("submit")
         e.preventDefault()
         setFormError("")
 
@@ -22,7 +23,14 @@ export const CreatePost = () => {
         // Criar o array de tags
 
         // Checar todos os valores
-
+        console.log("object", {
+        title,
+        image,
+        body,
+        tags,
+        uid: user.uid,
+        createdBy: user.displayName
+      })
       insertDocument({
         title,
         image,
@@ -81,7 +89,7 @@ export const CreatePost = () => {
                 value={tags}
             />
             </label>
-            {!response.loading && <button className="btn">Criar post!</button>}
+            {!response.loading && <button type='submit' className="btn">Criar post!</button>}
             {response.loading && (
             <button className="btn" disabled>
                 Aguarde.. .
