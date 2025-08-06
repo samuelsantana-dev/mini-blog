@@ -2,6 +2,7 @@ import {useState} from 'react'
 import styles from './CreatePost.module.css'
 import {useInsertDocument} from "../../hook/useInsertDocument"
 import {useAuthValue} from "../../context/AuthContext"
+import { useNavigate } from 'react-router-dom'
 export const CreatePost = () => {
 
     const [title, setTitle] = useState("");
@@ -12,22 +13,29 @@ export const CreatePost = () => {
 
   const {user} = useAuthValue()
   const {insertDocument, response} = useInsertDocument("posts")
-
+    const navigate = useNavigate()
     const handleSubmit = (e) => {
         console.log("submit")
         e.preventDefault()
         setFormError("")
 
         // Validate image URL
+        try {
+            new URL(image)
+        } catch (error) {
+        console.log('error', error)
+            setFormError("A imagem precisa ser uma url.")
+            return;
+        }
 
         // Criar o array de tags
-
+        const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
         // Checar todos os valores
         console.log("object", {
         title,
         image,
         body,
-        tags,
+        tags: tagsArray,
         uid: user.uid,
         createdBy: user.displayName
       })
@@ -35,10 +43,12 @@ export const CreatePost = () => {
         title,
         image,
         body,
-        tags,
+        tags: tagsArray,
         uid: user.uid,
         createdBy: user.displayName
       })
+
+      navigate("/")
     }
 
     return (
