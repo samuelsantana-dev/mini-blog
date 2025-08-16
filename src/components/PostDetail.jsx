@@ -2,7 +2,6 @@ import styles from './PostDetail.module.css';
 import {Link} from 'react-router-dom'
 // A key é sempre algo que nao se repete
 export const PostDetail = ({ post }) => {
-    console.log('post', post)
     return (
         <div className={styles.post_detail}>
             <img src={post.image} alt={post.title} />

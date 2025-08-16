@@ -15,7 +15,6 @@ export const CreatePost = () => {
   const {insertDocument, response} = useInsertDocument("posts")
     const navigate = useNavigate()
     const handleSubmit = (e) => {
-        console.log("submit")
         e.preventDefault()
         setFormError("")
 
@@ -61,7 +60,7 @@ export const CreatePost = () => {
             <input
                 type="text"
                 name="text"
-                required
+                required    
                 placeholder="Pense num bom título..."
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
