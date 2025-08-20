@@ -16,6 +16,7 @@ import { useEffect, useState } from "react"
 import { useAuthentication } from "./hook/useAuthentication.jsx"
 // FireBase
 import { onAuthStateChanged } from "firebase/auth"
+import { Search } from './pages/Search/Search';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
                   <Route path="/register" element={user ? <Navigate to="/login" /> : <Register />}/>
                   <Route path="/about" element={user ? <Navigate to="/login" /> : <About />}/>
                   <Route path="/create-post" element={!user ? <Navigate to="/login" /> :<CreatePost/>}/>
+                  <Route path="/search" element={!user ? <Navigate to="/login" /> :<Search/>}/>
                   <Route path={"/dashboard"} element={!user ? <Navigate to="/login" /> : <Dashboard />} />
               </Routes>
           </div>
