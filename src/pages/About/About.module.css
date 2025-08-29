@@ -1,17 +1,36 @@
 .about {
-  text-align: center;
+  height: 100vh; /* ocupa a tela inteira */
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 2em;
+}
+
+.content {
+  max-width: 800px;
+}
+
+.about h2 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  color: #222;
+}
+
+.about h2 span {
+  color: #1a8918;
 }
 
 .about p {
-  color: #aaa;
-  margin-bottom: 2em;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 1.2em;
 }
 
-.about a {
-  display: block;
-  margin-top: 15px;
-  padding: 10px 15px;
+.callToAction {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 1.8em;
+  color: #222;
 }
