@@ -11,6 +11,7 @@ import { Login } from "./pages/Login/Login.jsx"
 import { Register } from "./pages/Register/Register.jsx"
 import { Dashboard } from "./pages/Dashboard/Dashboard.jsx"
 import { CreatePost } from "./pages/CreatePost/CreatePost.jsx"
+import { Post } from "./pages/Post/Post.jsx"
 // Hook
 import { useEffect, useState } from "react"
 import { useAuthentication } from "./hook/useAuthentication.jsx"
@@ -30,7 +31,6 @@ function App() {
   })
 }, [auth])
 
-  // Nao vai exibir nada antes do usuario ser carregado
   if(loadingUser){
     return <p>Carregando...</p>
   }
@@ -47,6 +47,7 @@ function App() {
                   <Route path="/about" element={user ? <Navigate to="/login" /> : <About />}/>
                   <Route path="/create-post" element={!user ? <Navigate to="/login" /> :<CreatePost/>}/>
                   <Route path="/search" element={!user ? <Navigate to="/login" /> :<Search/>}/>
+                  <Route path="/posts/:id" element={!user ? <Navigate to="/login" /> :<Post />}/>
                   <Route path={"/dashboard"} element={!user ? <Navigate to="/login" /> : <Dashboard />} />
               </Routes>
           </div>
