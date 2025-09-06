@@ -18,7 +18,6 @@ export const CreatePost = () => {
         e.preventDefault()
         setFormError("")
 
-        // Validate image URL
         try {
             new URL(image)
         } catch (error) {
@@ -27,17 +26,7 @@ export const CreatePost = () => {
             return;
         }
 
-        // Criar o array de tags
         const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
-        // Checar todos os valores
-        console.log("object", {
-        title,
-        image,
-        body,
-        tags: tagsArray,
-        uid: user.uid,
-        createdBy: user.displayName
-      })
       insertDocument({
         title,
         image,

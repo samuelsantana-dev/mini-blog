@@ -20,8 +20,7 @@ export const Login = () => {
 
         setError("")
 
-        const responseLogin = await login(user)
-        console.log('responseLogin', responseLogin)
+        await login(user)
         navigate("/dashboard")
     }
 

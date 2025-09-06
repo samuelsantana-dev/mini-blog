@@ -8,9 +8,7 @@ import { useQuery } from "../../hook/useQuery";
 export const Search = () => {
   const query = useQuery();
   const search = query.get("q") 
-  console.log('search', search)
   const {documents: posts} = useFecthDocuments("posts", search);
-  console.log('posts', posts)
   return (
     <div>
       <h2>search</h2>

@@ -7,11 +7,9 @@ import { useDeleteDocument } from "../../hook/useDeleteDocuments";
 export const Dashboard = () => {
     const {user} = useAuthValue();
     const uid = user.id;
-    console.log(uid)
     const { documents: posts, loading } = useFecthDocuments("posts", null, uid);
     const {deleteDocument} = useDeleteDocument("posts")
 
-    console.log('posts', posts)
     if (loading){
         return <p>Carregando...</p>
     }
@@ -43,7 +41,7 @@ export const Dashboard = () => {
                       Ver
                     </Link>
                     <Link
-                      to={`/posts/edit/${post.id}`}
+                      to={`/posts/edit-post/${post.id}`}
                       className="btn btn-outline"
                     >
                       Editar

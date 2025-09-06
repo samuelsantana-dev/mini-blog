@@ -27,7 +27,6 @@ export const useFecthUnicDocuments = (docCollection, id) => {
         loadDocument()
     }, [docCollection, id])
 
-    console.log('document', document);
 
     return {document, loading, error}
 }
