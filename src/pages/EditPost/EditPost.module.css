@@ -1,0 +1,83 @@
+.edit_post {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  padding: 2em 1em;
+}
+
+.edit_post h2 {
+  font-size: 2.4em;
+  margin-bottom: 0.3em;
+  color: #222;
+}
+
+.edit_post p {
+  color: #555;
+  margin-bottom: 2em;
+  font-size: 1.1em;
+  max-width: 600px;
+}
+
+.edit_post form {
+  width: 100%;
+  max-width: 500px;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.edit_post form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2em;
+}
+
+.edit_post form span {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: #333;
+}
+
+.edit_post input,
+.edit_post textarea {
+  border: none;
+  border-bottom: 2px solid #ddd;
+  padding: 0.8em;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+.edit_post input:focus,
+.edit_post textarea:focus {
+  border-color: #1a8918;
+  outline: none;
+}
+
+.edit_post textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.edit_post .preview_title {
+  margin-bottom: .2em;
+  color: #000;
+  font-weight: bold;
+}
+
+.image_preview {
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+.error {
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 1em;
+  font-size: 0.9em;
+}

@@ -21,7 +21,7 @@ export const Login = () => {
         setError("")
 
         await login(user)
-        navigate("/dashboard")
+        navigate("/about")
     }
 
     useEffect(() => {

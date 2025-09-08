@@ -8,6 +8,8 @@ export const Dashboard = () => {
     const {user} = useAuthValue();
     const uid = user.id;
     const { documents: posts, loading } = useFecthDocuments("posts", null, uid);
+    console.log("🚀 ~ Dashboard ~ posts:", posts)
+    
     const {deleteDocument} = useDeleteDocument("posts")
 
     if (loading){
@@ -31,7 +33,6 @@ export const Dashboard = () => {
               <span>Título</span>
               <span>Ações</span>
             </div>
-
             {posts &&
               posts.map((post) => (
                 <div className={styles.post_row} key={post.id}>
@@ -41,7 +42,7 @@ export const Dashboard = () => {
                       Ver
                     </Link>
                     <Link
-                      to={`/posts/edit-post/${post.id}`}
+                      to={`/edit-post/${post.id}`}
                       className="btn btn-outline"
                     >
                       Editar

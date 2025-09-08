@@ -12,6 +12,7 @@ import { Register } from "./pages/Register/Register.jsx"
 import { Dashboard } from "./pages/Dashboard/Dashboard.jsx"
 import { CreatePost } from "./pages/CreatePost/CreatePost.jsx"
 import { Post } from "./pages/Post/Post.jsx"
+import { EditPost } from "./pages/EditPost/EditPost.jsx"
 // Hook
 import { useEffect, useState } from "react"
 import { useAuthentication } from "./hook/useAuthentication.jsx"
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/register" element={user ? <Navigate to="/login" /> : <Register />}/>
                   <Route path="/about" element={ <About />}/>
                   <Route path="/create-post" element={!user ? <Navigate to="/login" /> :<CreatePost/>}/>
+                  <Route path="/edit-post/:id" element={!user ? <Navigate to="/login" /> :<EditPost />}/>
                   <Route path="/search" element={!user ? <Navigate to="/login" /> :<Search/>}/>
                   <Route path="/posts/:id" element={!user ? <Navigate to="/login" /> :<Post />}/>
                   <Route path={"/dashboard"} element={!user ? <Navigate to="/login" /> : <Dashboard />} />
