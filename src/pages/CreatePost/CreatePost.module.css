@@ -1,65 +1,107 @@
+/* CreatePost.module.css */
+
 .create_post {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  text-align: center;
+  align-items: center;
   padding: 2em 1em;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .create_post h2 {
   font-size: 2.4em;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
   color: #222;
+  text-align: center;
 }
 
 .create_post p {
   color: #555;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
   font-size: 1.1em;
   max-width: 600px;
+  text-align: center;
+}
+
+.create_post ul {
+  text-align: left;
+  max-width: 600px;
+  margin-bottom: 2em;
+  padding-left: 1.2em;
+  color: #444;
+  line-height: 1.6;
+}
+
+.create_post ul li {
+  margin-bottom: 0.5em;
 }
 
 .create_post form {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   padding: 2em;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  text-align: left;
+  background-color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
 }
 
 .create_post form label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.5em;
 }
 
 .create_post form span {
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 0.5em;
   color: #333;
 }
 
 .create_post input,
 .create_post textarea {
-  border: none;
-  border-bottom: 2px solid #ddd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 0.8em;
   font-size: 1em;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .create_post input:focus,
 .create_post textarea:focus {
   border-color: #1a8918;
   outline: none;
+  box-shadow: 0 0 8px rgba(26, 137, 24, 0.2);
 }
 
 .create_post textarea {
-  min-height: 120px;
+  min-height: 140px;
   resize: vertical;
+}
+
+.btn {
+  background-color: #1a8918;
+  color: #fff;
+  padding: 0.8em 1.2em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1em;
+}
+
+.btn:hover {
+  background-color: #146813;
+  transform: translateY(-2px);
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 .error {
@@ -69,4 +111,20 @@
   border-radius: 6px;
   margin-top: 1em;
   font-size: 0.9em;
+  background-color: #f8d7da;
+}
+
+@media (max-width: 768px) {
+  .create_post form {
+    padding: 1.5em;
+  }
+
+  .create_post h2 {
+    font-size: 2em;
+  }
+
+  .create_post p,
+  .create_post ul {
+    font-size: 1em;
+  }
 }

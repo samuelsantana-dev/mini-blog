@@ -20,6 +20,21 @@ export const Dashboard = () => {
       <div className={styles.dashboard}>
         <h1>Dashboard</h1>
         <p>Gerencie seus posts</p>
+
+        {/* Explicativo */}
+        <div className={styles.dashboard_info}>
+          <h3>Como usar o Dashboard:</h3>
+          <ul>
+            <li><strong>Visualizar:</strong> Clique em "Ver" para abrir o post completo.</li>
+            <li><strong>Editar:</strong> Clique em "Editar" para alterar título, conteúdo, imagem ou tags do post.</li>
+            <li><strong>Excluir:</strong> Clique em "Excluir" para remover permanentemente o post.</li>
+            <li><strong>Criar novo post:</strong> Use o botão "Criar primeiro post" caso ainda não tenha posts.</li>
+          </ul>
+          <p>
+            Todas as alterações feitas podem ser vistas imediatamente. Mantenha seus posts atualizados para compartilhar seu conteúdo com seus leitores.
+          </p>
+        </div>
+
         {posts && posts.length === 0 ? (
           <div className={styles.noposts}>
             <p>Nao foram encontrados nenhum posts</p>
@@ -58,7 +73,6 @@ export const Dashboard = () => {
               ))}
           </div>
         )}
-
       </div>
     );
 }

@@ -43,6 +43,15 @@ export const CreatePost = () => {
         <div className={styles.create_post}>
         <h2>Criar post</h2>
         <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
+        <ul>
+            <li><strong>Título:</strong> Pense em algo chamativo que resuma seu conteúdo.</li>
+            <li><strong>URL da imagem:</strong> Use uma imagem representativa para seu post.</li>
+            <li><strong>Conteúdo:</strong> Escreva seu texto com clareza, compartilhe seu conhecimento ou opinião.</li>
+            <li><strong>Tags:</strong> Adicione palavras-chave separadas por vírgula para facilitar a busca e organização dos posts.</li>
+        </ul>
+            <p>
+            Após enviar, seu post será publicado e poderá ser visualizado, editado ou excluído na dashboard.
+            </p>
         <form onSubmit={handleSubmit}>
             <label>
             <span>Título:</span>
