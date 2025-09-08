@@ -21,7 +21,6 @@ export const Dashboard = () => {
         <h1>Dashboard</h1>
         <p>Gerencie seus posts</p>
 
-        {/* Explicativo */}
         <div className={styles.dashboard_info}>
           <h3>Como usar o Dashboard:</h3>
           <ul>

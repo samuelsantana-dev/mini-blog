@@ -13,9 +13,11 @@ export const Post = () => {
             {post && (
                 <>
                     <h1>{post.title}</h1>
-                    <img src={post.image} alt={post.title} />
-                    <p>{post.body}</p>
+                    <img src={post.image} alt={post.title} /> <br />
                     <h3>Este post trata sobre</h3>
+                    <p>{post.body}</p>
+                    <h3>Cada tag represnta</h3>
+                
                     <div className={styles.tags}>
                     {post.tags.map((tag) => (
                         <p key={tag}>
@@ -26,8 +28,6 @@ export const Post = () => {
                     </div>
                 </>
             )}
-            <h1>Post</h1>
-            <p>teste {id}</p>
             
         </div>
     )
