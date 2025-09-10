@@ -35,7 +35,8 @@ export const useAuthentication = () => {
         data.email,
         data.password
       );
-
+      console.log("🚀 ~ createUser ~ user:", user)
+      
       await updateProfile(user, {
         displayName: data.displayName
       });
@@ -66,17 +67,29 @@ export const useAuthentication = () => {
       setLoading(true);
       setError("");
     try {
-          setLoading(false);
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      
-    } catch (erro) {
+    } catch (error) {
+      console.log("Erro completo:", error);
       let systemErrorMessage;
 
-      if(erro.message.includes("INVALID_LOGIN_CREDENTIALS")){
+      if (error.message.includes("user-not-found")) {
         systemErrorMessage = "Usuário não encontrado.";
-      } 
-      setLoading(false);
+      } else if (error.message.includes("wrong-password")) {
+        systemErrorMessage = "Senha incorreta.";
+      } if (error.message.includes("password")) {
+        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
+      } else if (error.message.includes("email-already")) {
+        systemErrorMessage = "E-mail já cadastrado.";
+      } else if (error.message.includes("INVALID_LOGIN_CREDENTIALS")) {
+        systemErrorMessage = "Usuario nao encontrado"
+      } else if(error.message.includes("TOO_MANY_ATTEMPTS_TRY_LATER")){
+        systemErrorMessage = "Muitas tentativas tentar novamente mais tarde."
+      } else {
+        systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
+      }
       setError(systemErrorMessage);
+    } finally {
+      setLoading(false)
     }
   }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from "./Register.module.css"
-import {useAuthentication} from "../../hook/useAuthentication.jsx"
+import {useAuthentication} from "../../hook/useAuthentication"
 import { useNavigate } from "react-router-dom"
 /**
  * Value fica como controle do input 
@@ -17,23 +17,31 @@ export const Register = () => {
     const { createUser, erroSystem, loading} = useAuthentication()
 
     async function onSubmit(e){
-        e.preventDefault()
+        try {
+            e.preventDefault()
 
-        const user = {
-            displayName,
-            email,
-            password
+            const user = {
+                displayName,
+                email,
+                password
+            }
+
+            setError("")
+            if(password !== confirmPassword){
+                setError("As senhas não são iguais")
+                return;
+            }
+
+            const result = await createUser(user)
+            console.log("🚀 ~ onSubmit ~ result:", result)
+
+            navigate("/dashboard")
+        } catch (error) {
+            console.log("🚀 ~ onSubmit ~ error:", error)
+            setError(error.message || "Erro ao criar usuario")
+            alert("Erro ao criar usuario")
         }
-
-        setError("")
-        if(password !== confirmPassword){
-            setError("As senhas não são iguais")
-            return;
-        }
-
-        await createUser(user)
-
-        navigate("/dashboard")
+        
     }
 
     useEffect(() => {
