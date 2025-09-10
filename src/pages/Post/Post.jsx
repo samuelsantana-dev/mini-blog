@@ -5,7 +5,6 @@ import { useFecthUnicDocuments } from "../../hook/useFecthUnicDocuments";
 export const Post = () => {
     const {id} = useParams();
     const {document: post, loading } = useFecthUnicDocuments("posts", id);
-    console.log("🚀 ~ Post ~ post:", post)
     
     return (
         <div className={styles.post_container}>

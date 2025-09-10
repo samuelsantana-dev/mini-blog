@@ -8,7 +8,6 @@ export const Dashboard = () => {
     const {user} = useAuthValue();
     const uid = user.id;
     const { documents: posts, loading } = useFecthDocuments("posts", null, uid);
-    console.log("🚀 ~ Dashboard ~ posts:", posts)
     
     const {deleteDocument} = useDeleteDocument("posts")
 

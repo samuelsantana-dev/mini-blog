@@ -21,7 +21,7 @@ export const CreatePost = () => {
         try {
             new URL(image)
         } catch (error) {
-        console.log('error', error)
+            console.error(error)
             setFormError("A imagem precisa ser uma url.")
             return;
         }
