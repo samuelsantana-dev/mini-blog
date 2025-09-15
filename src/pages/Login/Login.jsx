@@ -15,15 +15,8 @@ export const Login = () => {
                 email,
                 password
             }
-            console.log("🚀 ~ onSubmit ~ user:", user)
-            const responseLogin = await login(user)   
-            console.log("🚀 ~ onSubmit ~ responseLogin:", responseLogin)
-            if(responseLogin == undefined){
-                console.log("Verifique suas credenciais")
-                return;
-            }
+             await login(user)   
         } catch (error) {
-            console.log(`TESTE ERRO ${error}`)
             console.log('error', error)
         }
     }

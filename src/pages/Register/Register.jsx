@@ -32,8 +32,7 @@ export const Register = () => {
                 return;
             }
 
-            const result = await createUser(user)
-            console.log("🚀 ~ onSubmit ~ result:", result)
+            await createUser(user)
 
             navigate("/dashboard")
         } catch (error) {
