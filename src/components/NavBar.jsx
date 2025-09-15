@@ -1,35 +1,90 @@
 import { NavLink } from "react-router-dom"
 import { useAuthValue } from "../context/AuthContext"
-import  styles  from "./NavBar.module.css"
-import { Dashboard } from './../pages/Dashboard/Dashboard';
-import { useAuthentication } from "../hook/useAuthentication";
+import { useAuthentication } from "../hook/useAuthentication"
+import { useState } from "react"
+import styles from "./NavBar.module.css"
+
 export const NavBar = () => {
-    const {user} = useAuthValue();  
-    const {logout} = useAuthentication();
-    return (
-       <nav className={styles.navbar}>
-            <NavLink className={styles.brand} to="/">
-                Mini blog
-            </NavLink>
-            <ul className={styles.links_list}>
-                <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/">Home</NavLink></li>
-                <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/about">About</NavLink></li>
-                {!user && (
-                    <>
-                        <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/login">Login</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/register">Register</NavLink></li>
-                    </>
-                )}
-                {user && (
-                    <>
-                        <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/create-post">Create Post</NavLink></li>
-                        <li><NavLink className={({isActive}) => isActive ? styles.active : ""} to="/dashboard">Dashboard</NavLink></li>
-                        <li>
-                            <button onClick={() => logout()}>Logout</button>
-                        </li>
-                    </>
-                )}
-            </ul>
-       </nav>
-    )
+  const { user } = useAuthValue()
+  const { logout } = useAuthentication()
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => setIsOpen(!isOpen)
+
+  return (
+    <nav className={styles.navbar}>
+      <NavLink className={styles.brand} to="/">
+        Mini blog
+      </NavLink>
+
+      <button className={styles.menuToggle} onClick={toggleMenu}>
+        ☰
+      </button>
+
+      <ul
+        className={`${styles.links_list} ${isOpen ? styles.show : ""}`}
+        onClick={() => setIsOpen(false)} 
+      >
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/"
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? styles.active : "")}
+            to="/about"
+          >
+            About
+          </NavLink>
+        </li>
+        {!user && (
+          <>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.active : "")}
+                to="/login"
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.active : "")}
+                to="/register"
+              >
+                Register
+              </NavLink>
+            </li>
+          </>
+        )}
+        {user && (
+          <>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.active : "")}
+                to="/create-post"
+              >
+                Create Post
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.active : "")}
+                to="/dashboard"
+              >
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <button onClick={() => logout()}>Logout</button>
+            </li>
+          </>
+        )}
+      </ul>
+    </nav>
+  )
 }
