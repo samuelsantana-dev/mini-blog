@@ -35,7 +35,6 @@ export const useAuthentication = () => {
         data.email,
         data.password
       );
-      console.log("🚀 ~ createUser ~ user:", user)
       
       await updateProfile(user, {
         displayName: data.displayName

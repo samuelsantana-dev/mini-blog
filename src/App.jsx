@@ -22,9 +22,7 @@ import { Search } from "./pages/Search/Search";
 
 function App() {
   const [user, setUser] = useState(undefined);
-  console.log("🚀 ~ App ~ user:", user);
   const { auth } = useAuthentication();
-  console.log("🚀 ~ App ~ auth:", auth);
   const loadingUser = user === undefined;
 
   useEffect(() => {
