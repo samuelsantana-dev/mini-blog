@@ -81,3 +81,10 @@
   margin-top: 1em;
   font-size: 0.9em;
 }
+
+
+@media screen {
+  .edit_post form  {
+    max-width: 90%;
+  }
+}
