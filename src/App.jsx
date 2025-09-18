@@ -40,7 +40,6 @@ function App() {
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <NavBar />
-          <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
@@ -74,7 +73,6 @@ function App() {
               />
               {/* <Route path="*"></Route> */}
             </Routes>
-          </div>
           <Footer />
         </BrowserRouter>
       </AuthProvider>
