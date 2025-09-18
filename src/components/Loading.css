@@ -1,0 +1,74 @@
+:root{
+  --gold-1: #ffd970;
+  --gold-2: #f6b93b;
+  --gold-3: #c98a00;
+  --glow: rgba(255, 201, 70, 0.35);
+}
+
+.loading-viewport{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; 
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0; padding: 0; margin: -1px;
+}
+
+.gold-spinner{
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  position: relative;
+  display: inline-block;
+
+  background: radial-gradient(circle at 30% 30%, var(--gold-1) 0%, var(--gold-2) 50%, var(--gold-3) 100%);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.18),
+    0 0 18px var(--glow),
+    inset 0 2px 6px rgba(255,255,255,0.25);
+
+  -webkit-mask:
+    radial-gradient(farthest-side, transparent 68%, black 69%),
+    conic-gradient(from 90deg at 50% 50%, black 0deg, black 270deg, transparent 270deg);
+  mask:
+    radial-gradient(farthest-side, transparent 68%, black 69%),
+    conic-gradient(from 90deg at 50% 50%, black 0deg, black 270deg, transparent 270deg);
+
+  animation: spin 1.25s linear infinite, metalShift 2.8s ease-in-out infinite;
+}
+
+@keyframes spin{
+  to { transform: rotate(360deg); }
+}
+
+@keyframes metalShift{
+  0% {
+    filter: brightness(1) saturate(1);
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    filter: brightness(1.06) saturate(1.08);
+    transform: rotate(180deg) scale(1.02);
+  }
+  100% {
+    filter: brightness(1) saturate(1);
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.gold-spinner.small{
+  width: 32px;
+  height: 32px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{ --glow: rgba(255, 201, 70, 0.5); }
+}

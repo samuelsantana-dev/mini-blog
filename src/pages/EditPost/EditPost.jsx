@@ -4,6 +4,8 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFecthUnicDocuments } from "../../hook/useFecthUnicDocuments";
 import { useUpdateDocument } from "../../hook/useEditDocument";
+import { Loading } from "../../components/Loading";
+
 export const EditPost = () => {
   const { id } = useParams();
   const { document: post, loading } = useFecthUnicDocuments("posts", id);
@@ -58,7 +60,7 @@ useEffect(() => {
   };
 
   if (loading) {
-  return <p>Carregando post...</p>;
+  return <Loading />;
 }
 
   return (

@@ -6,6 +6,8 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useFecthDocuments} from '../../hook/useFetchDocument'
 // Components
 import {PostDetail} from '../../components/PostDetail'
+import { Loading } from "../../components/Loading";
+
 
 export const Home = () => {
 
@@ -28,7 +30,7 @@ export const Home = () => {
             </form>
 
             <div className='post-list'>
-                {loading && <p>Carregando posts</p>}
+                {loading && <Loading />}
                 {
                    posts && posts.map((post) => (
                         <PostDetail key={post.id} post={post} />

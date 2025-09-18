@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import styles from "./Dashboard.module.css"
 import { useFecthDocuments } from "../../hook/useFetchDocument";
 import { useDeleteDocument } from "../../hook/useDeleteDocuments";
+import { Loading } from "../../components/Loading";
+
 
 export const Dashboard = () => {
     const {user} = useAuthValue();
@@ -12,7 +14,7 @@ export const Dashboard = () => {
     const {deleteDocument} = useDeleteDocument("posts")
 
     if (loading){
-        return <p>Carregando...</p>
+        return <Loading />
     }
 
     return (

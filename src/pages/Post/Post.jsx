@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import styles from './Post.module.css'
 import { useFecthUnicDocuments } from "../../hook/useFecthUnicDocuments";
+import { Loading } from "../../components/Loading";
+
 
 export const Post = () => {
     const {id} = useParams();
@@ -8,7 +10,7 @@ export const Post = () => {
     
     return (
         <div className={styles.post_container}>
-            {loading && <p>Carregando Post...</p>}
+            {loading && <Loading />}
             {post && (
                 <>
                     <h1>{post.title}</h1>

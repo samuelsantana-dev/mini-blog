@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // Components
 import { Footer } from "./components/Footer.jsx";
 import { NavBar } from "./components/NavBar.jsx";
+import { Loading } from "./components/Loading.jsx";
 // Context
 import { AuthProvider } from "./context/AuthContext.jsx";
 // Pages
@@ -32,7 +33,7 @@ function App() {
   }, [auth]);
 
   if (loadingUser) {
-    return <p>Carregando...</p>;
+    return <Loading />;
   }
 
   return (
