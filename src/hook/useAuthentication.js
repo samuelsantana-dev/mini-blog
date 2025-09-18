@@ -13,19 +13,19 @@ export const useAuthentication = () => {
   const [loading, setLoading] = useState(false);
   const [cancelled, setCancelled] = useState(false);
 
-  function checkIfCancelled() {
-    if (cancelled) return true;
-    return false;
+  function checkIfIsCancelled() {
+     if (cancelled) {
+      return;
+    }
   }
 
   const logout = () => {
-    checkIfCancelled();
+    checkIfIsCancelled();
     signOut(auth);
   }
 
   const createUser = async (data) => {
-    if (checkIfCancelled()) return;
-
+     checkIfIsCancelled();
     try {
       setLoading(true);
       setError("");
@@ -62,35 +62,38 @@ export const useAuthentication = () => {
   };
 
   const login = async (data) => {
-    checkIfCancelled();
-      setLoading(true);
-      setError("");
-    try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-    } catch (error) {
-      console.log("Erro completo:", error);
-      let systemErrorMessage;
+  checkIfIsCancelled();
+  setLoading(true);
+  setError("");
+  try {
+    await signInWithEmailAndPassword(auth, data.email, data.password);
+  } catch (error) {
+    let systemErrorMessage;
 
-      if (error.message.includes("user-not-found")) {
+    switch (error.code) {
+      case "auth/user-not-found":
         systemErrorMessage = "Usuário não encontrado.";
-      } else if (error.message.includes("wrong-password")) {
+        break;
+      case "auth/wrong-password":
         systemErrorMessage = "Senha incorreta.";
-      } if (error.message.includes("password")) {
-        systemErrorMessage = "A senha precisa conter pelo menos 6 caracteres.";
-      } else if (error.message.includes("email-already")) {
-        systemErrorMessage = "E-mail já cadastrado.";
-      } else if (error.message.includes("INVALID_LOGIN_CREDENTIALS")) {
-        systemErrorMessage = "Usuario nao encontrado"
-      } else if(error.message.includes("TOO_MANY_ATTEMPTS_TRY_LATER")){
-        systemErrorMessage = "Muitas tentativas tentar novamente mais tarde."
-      } else {
-        systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
-      }
-      setError(systemErrorMessage);
-    } finally {
-      setLoading(false)
+        break;
+      case "auth/invalid-credential":
+        systemErrorMessage = "Credenciais inválidas. Verifique e-mail e senha.";
+        break;
+      case "auth/too-many-requests":
+        systemErrorMessage = "Muitas tentativas. Tente novamente mais tarde.";
+        break;
+      default:
+        systemErrorMessage = "Ocorreu um erro, tente novamente mais tarde.";
+        break;
     }
+
+    setError(systemErrorMessage);
+  } finally {
+    setLoading(false);
   }
+};
+
 
   useEffect(() => {
     return () => setCancelled(true);
